@@ -17,11 +17,7 @@ public class WishlistController {
         this.wishlistService = wishlistService;
     }
 
-    @GetMapping("")
-    public ResponseEntity<String>helloMessage(){
-        String msg = wishlistService.helloWorld();
-        return new ResponseEntity<>(msg, HttpStatus.OK);
-    }
+
 
 
 }

@@ -11,9 +11,7 @@ public class WishlistService {
         this.wishlistRepository = wishlistRepository;
     }
 
-    public String helloWorld(){
-        return wishlistRepository.helloWorld();
-    }
+
 
 
 }
