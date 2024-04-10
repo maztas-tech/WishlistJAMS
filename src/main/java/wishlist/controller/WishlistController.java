@@ -10,14 +10,18 @@ import wishlist.model.Wishlist;
 import wishlist.service.WishlistService;
 
 @Controller
-@RequestMapping("wish_list")
+@RequestMapping("wish_list_frontpage")
 public class WishlistController {
     private WishlistService wishlistService;
     public WishlistController(WishlistService wishlistService) {
         this.wishlistService = wishlistService;
     }
 
-
+    @GetMapping("")
+    public String wishListFrontpage(Model model) {
+        model.addAttribute("welcome", "Welcome to your wishlist");
+        return "wish_list_frontpage";
+    }
 
 
 }
