@@ -1,4 +1,4 @@
-package wishlist.connectionManager;
+package wishlist.repository.util;
 
 import java.sql.Connection;
 import java.sql.DriverManager;
