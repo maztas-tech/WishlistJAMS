@@ -1,5 +1,3 @@
-DROP DATABASE IF exists wishlist_db;
-
 CREATE SCHEMA if not exists wishlist_db;
 use wishlist_db;
 
