@@ -1,3 +1,5 @@
+DROP DATABASE IF exists wishlist_db;
+
 CREATE SCHEMA if not exists wishlist_db;
 use wishlist_db;
 
@@ -14,8 +16,8 @@ CREATE TABLE if not exists wishlist(
     isPrivate BOOLEAN,
     wishlistName VARCHAR(50) NOT NULL,
     wishlistDescription VARCHAR(100),
-    wishlistPrice INT NOT NULL,
     wishID INT,
     primary key(wishlistID),
     foreign key(wishID) references wish(wishID)
 );
+
