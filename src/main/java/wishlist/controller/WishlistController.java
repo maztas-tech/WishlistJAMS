@@ -19,6 +19,7 @@ public class WishlistController {
 
     @GetMapping("")
     public String wishListFrontpage(Model model) {
+        model.addAttribute("wishlist",wishlistService.showAllWIshlists());
         return "wish_list_frontpage";
     }
 

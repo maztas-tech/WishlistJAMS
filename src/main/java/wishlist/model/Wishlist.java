@@ -1,17 +1,25 @@
 package wishlist.model;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class Wishlist {
     private String wishlistName;
-    private boolean wishlistPrivate;
+    private int wishlistPrivate;
     private List<Wish> wishArrayList;
 
-    public Wishlist(String wishlistName, boolean wishlistPrivate, List<Wish> wishArrayList) {
+    public Wishlist(String wishlistName, int wishlistPrivate, List<Wish> wishArrayList) {
         this.wishlistName = wishlistName;
         this.wishlistPrivate = wishlistPrivate;
         this.wishArrayList = wishArrayList;
     }
+
+    public Wishlist(String wishlistName, int wishlistPrivate) {
+        this.wishlistName = wishlistName;
+        this.wishlistPrivate = wishlistPrivate;
+    }
+
+
 
 
     public String getWishlistName() {
@@ -22,11 +30,11 @@ public class Wishlist {
         this.wishlistName = wishlistName;
     }
 
-    public boolean isWishlistPrivate() {
+    public int isWishlistPrivate() {
         return wishlistPrivate;
     }
 
-    public void setWishlistPrivate(boolean wishlistPrivate) {
+    public void setWishlistPrivate(int wishlistPrivate) {
         this.wishlistPrivate = wishlistPrivate;
     }
 

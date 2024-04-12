@@ -23,10 +23,10 @@ CREATE TABLE if not exists wish(
 -- Inserting data into the wishlist table
 INSERT INTO wishlist (wishListName, isWishListPrivate)
 VALUES
-    ('Birthday Wishlist', FALSE),
-    ('Secret Santa Wishlist', TRUE),
-    ('Dream Vacation Wishlist', FALSE),
-    ('Special Occasion Wishlist', TRUE);
+    ('Birthday Wishlist', 0),
+    ('Secret Santa Wishlist', 1),
+    ('Dream Vacation Wishlist', 0),
+    ('Special Occasion Wishlist', 1);
 
 
 
