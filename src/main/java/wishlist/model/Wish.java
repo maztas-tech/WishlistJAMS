@@ -4,13 +4,11 @@ public class Wish {
     private String itemName;
     private String itemDescription;
     private double itemPrice;
-    private int itemID;
 
-    public Wish(String itemName, String itemDescription, double itemPrice, int itemID) {
+    public Wish(String itemName, String itemDescription, double itemPrice) {
         this.itemName = itemName;
         this.itemDescription = itemDescription;
         this.itemPrice = itemPrice;
-        this.itemID = itemID;
     }
 
     public String getItemName() {
@@ -37,11 +35,4 @@ public class Wish {
         this.itemPrice = itemPrice;
     }
 
-    public int getItemID() {
-        return itemID;
-    }
-
-    public void setItemID(int itemID) {
-        this.itemID = itemID;
-    }
 }
