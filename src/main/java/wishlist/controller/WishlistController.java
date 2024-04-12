@@ -19,7 +19,6 @@ public class WishlistController {
 
     @GetMapping("")
     public String wishListFrontpage(Model model) {
-        model.addAttribute("welcome", "Welcome to your wishlist");
         return "wish_list_frontpage";
     }
 
