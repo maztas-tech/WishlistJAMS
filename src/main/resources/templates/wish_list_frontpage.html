@@ -17,25 +17,26 @@
     <tbody>
     <tr>
         <th>Name</th>
-        <th>Description</th>
         <th>Wishes</th>
         <th>Edit</th>
     </tr>
-    <tr>
+    <tr th:each="wish : ${wishlist}">
 
-        <td class="table-header">Wish list name</td>
-        <td >Wish list description</td>
+        <td class="table-header" th:text="${wish.wishlistName}">
+        </td>
 
-        <td>
-            <a>
+        <td class="table-header">
+            <a th:href="@{'wish_list_frontpage/' + ${wish.wishlistName} + '/wishes'}">
                 <input type="button" value="Wishes" class="button">
             </a>
         </td>
+
         <td>
-            <a>
-                <input type="button" value="Edit" class="button">
+            <a th:href="@{'wish_list_frontpage/' + ${wish.wishlistName} + '/edit'}">
+            <input type="button" value="Edit" class="button">
             </a>
         </td>
+
     </tr>
     </tbody>
 </table>
