@@ -23,11 +23,10 @@ public class WishlistRepository {
     private Wishlist wishlist;
     public List<Wishlist> showAllWishlists() {
         List<Wishlist> wishlists = new ArrayList<>();
-        int wishlistID=0;
         try (Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd)) {
             Statement stmt = connection.createStatement();
-            String sql2 = "SELECT wishListName, isWishListPrivate FROM wishlist";
-            ResultSet rs = stmt.executeQuery(sql2);
+            String sql = "SELECT wishListName, isWishListPrivate FROM wishlist";
+            ResultSet rs = stmt.executeQuery(sql);
 
 
 
