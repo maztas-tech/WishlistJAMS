@@ -44,5 +44,14 @@ public class WishlistRepository {
         return wishlists;
     }
 
+    public List<Wish> showAllItems() {
+        List<Wish> items = new ArrayList<>();
+
+
+
+        return items;
+
+    }
+
 
 }
