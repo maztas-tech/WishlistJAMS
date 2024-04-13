@@ -26,7 +26,8 @@ VALUES
     ('Birthday Wishlist', 0),
     ('Secret Santa Wishlist', 1),
     ('Dream Vacation Wishlist', 0),
-    ('Special Occasion Wishlist', 1);
+    ('Special Occasion Wishlist', 1),
+    ('Easter Wish list', 1);
 
 
 
