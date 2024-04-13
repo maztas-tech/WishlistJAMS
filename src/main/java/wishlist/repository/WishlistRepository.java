@@ -28,8 +28,6 @@ public class WishlistRepository {
             String sql = "SELECT wishListName, isWishListPrivate FROM wishlist";
             ResultSet rs = stmt.executeQuery(sql);
 
-
-
             while (rs.next()) {
                 wishlist = new Wishlist(
                         rs.getString(1),
@@ -43,13 +41,26 @@ public class WishlistRepository {
         return wishlists;
     }
 
-    public List<Wish> showAllItems() {
+    public List<Wish> showWishes(String wishName) {
         List<Wish> items = new ArrayList<>();
+        String sql = "SELECT * FROM wishlist JOIN wish ON wishlist.wishListID = wish.wishListID WHERE wishlist.wishListName = ?";
+        try(Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd)) {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setString(1, wishName);
+            ResultSet rs = ps.executeQuery(sql);
 
-
-
+            while (rs.next()) {
+                wish = new Wish(
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getInt(3)
+                );
+                items.add(wish);
+            }
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
         return items;
-
     }
 
 
