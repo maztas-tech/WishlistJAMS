@@ -21,10 +21,10 @@ public class WishlistController {
         return "wish_list_frontpage";
     }
 
-    @GetMapping("/{wishName}/wish")
+    @GetMapping("/{wishName}/wishes")
     public String wishItem(@PathVariable String wishName, Model model) {
-        model.addAttribute("wishName", wishlistService.showWishes(wishName));
-        return "wish";
+        model.addAttribute("wishVariable", wishlistService.showWishes(wishName));
+        return "wishes";
     }
 
 
