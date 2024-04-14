@@ -46,16 +46,16 @@ public class WishlistRepository {
     public List<Wish> showWishes(String name) {
         List<Wish> items = new ArrayList<>();
         Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
-        String sql = "SELECT * FROM wishlist JOIN wish ON wishlist.wishListID = wish.wishListID WHERE wishlist.wishListName = ?";
+        String sql = "SELECT wish.wishName, wish.wishDescription, wish.wishPrice FROM wishlist JOIN wish ON wishlist.wishListID = wish.wishListID WHERE wishlist.wishListName = ?";
         try(PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, name);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 wish = new Wish(
-                        rs.getString("wishName"),
-                        rs.getString("wishDescription"),
-                        rs.getInt("wishPrice")
+                        rs.getString(1),
+                        rs.getString(2),
+                        rs.getInt(3)
                 );
                 items.add(wish);
             }
