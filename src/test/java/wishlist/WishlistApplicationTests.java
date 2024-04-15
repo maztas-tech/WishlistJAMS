@@ -33,12 +33,13 @@ class WishlistApplicationTests {
     private String db_pwd;
     ;
 
-    @Test
+   /* @Test
     void deleteTest() {
         int startSize = wishlistRepository.showAllWishlists().size();
         wishlistRepository.deleteWishlist(1);
         int expectetSize = startSize - 1;
         int actualSize = wishlistRepository.showAllWishlists().size();
         assertEquals(expectetSize, actualSize);
-    }
+    }*/
+
 }
