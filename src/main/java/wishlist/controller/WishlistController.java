@@ -1,5 +1,6 @@
 package wishlist.controller;
 
+import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -10,6 +11,7 @@ import wishlist.service.WishlistService;
 @Controller
 @RequestMapping("wish_list_frontpage")
 public class WishlistController {
+
     private WishlistService wishlistService;
     public WishlistController(WishlistService wishlistService) {
         this.wishlistService = wishlistService;
@@ -27,6 +29,11 @@ public class WishlistController {
         return "wishes";
     }
 
+    @GetMapping("/{wishlistID}/delete")
+    public String deleteWishlist(@PathVariable("wishlistID") int wishlistID){
+        wishlistService.delete(wishlistID);
+        return "redirect:/wish_list_frontpage";
+    }
 
 
 

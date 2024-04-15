@@ -19,6 +19,7 @@
         <th>Name</th>
         <th>Wishes</th>
         <th>Edit</th>
+        <th>delete</th>
     </tr>
     <tr th:each="wish : ${wishlist}">
 
@@ -32,8 +33,13 @@
         </td>
 
         <td>
-            <a th:href="@{'wish_list_frontpage/' + ${wish.wishlistName} + '/edit'}">
+            <a th:href="@{'wish_list_frontpage/' + ${wish.wishlistID} + '/edit'}">
             <input type="button" value="Edit" class="button">
+            </a>
+        </td>
+        <td>
+            <a th:href="@{'wish_list_frontpage/' + ${wish.wishlistID} + '/delete'}">
+                <input type="button" value="delete" class="button">
             </a>
         </td>
 
