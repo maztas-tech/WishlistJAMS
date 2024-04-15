@@ -1,38 +1,38 @@
 package wishlist.model;
 
 public class Wish {
-    private String itemName;
-    private String itemDescription;
-    private double itemPrice;
+    private String wishName;
+    private String wishDescription;
+    private double wishPrice;
 
-    public Wish(String itemName, String itemDescription, double itemPrice) {
-        this.itemName = itemName;
-        this.itemDescription = itemDescription;
-        this.itemPrice = itemPrice;
+    public Wish(String wishName, String wishDescription, double wishPrice) {
+        this.wishName = wishName;
+        this.wishDescription = wishDescription;
+        this.wishPrice = wishPrice;
     }
 
-    public String getItemName() {
-        return itemName;
+    public String getWishName() {
+        return wishName;
     }
 
-    public void setItemName(String itemName) {
-        this.itemName = itemName;
+    public void setWishName(String wishName) {
+        this.wishName = wishName;
     }
 
-    public String getItemDescription() {
-        return itemDescription;
+    public String getWishDescription() {
+        return wishDescription;
     }
 
-    public void setItemDescription(String itemDescription) {
-        this.itemDescription = itemDescription;
+    public void setWishDescription(String wishDescription) {
+        this.wishDescription = wishDescription;
     }
 
-    public double getItemPrice() {
-        return itemPrice;
+    public double getWishPrice() {
+        return wishPrice;
     }
 
-    public void setItemPrice(double itemPrice) {
-        this.itemPrice = itemPrice;
+    public void setWishPrice(double wishPrice) {
+        this.wishPrice = wishPrice;
     }
 
 }
