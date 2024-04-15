@@ -21,6 +21,10 @@ public class WishlistService {
         return wishlistRepository.showWishes(wishlistID);
     }
 
+    public void delete(int wishlistID){
+        wishlistRepository.deleteWishlist(wishlistID);
+    }
+
 
 
 }
