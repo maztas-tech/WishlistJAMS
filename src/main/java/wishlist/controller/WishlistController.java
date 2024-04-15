@@ -2,17 +2,22 @@ package wishlist.controller;
 
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.*;
+import wishlist.model.Wish;
+import wishlist.model.Wishlist;
+import wishlist.repository.WishlistRepository;
 import wishlist.service.WishlistService;
 
 @Controller
 @RequestMapping("wish_list_frontpage")
 public class WishlistController {
+    private Wishlist wishlist; //data objekt
+
+
     private WishlistService wishlistService;
     public WishlistController(WishlistService wishlistService) {
         this.wishlistService = wishlistService;
+        this.wishlist = new Wishlist();
     }
 
     @GetMapping("")
@@ -27,10 +32,17 @@ public class WishlistController {
         return "wishes";
     }
 
-
+    // Create wish list
     @GetMapping("/wishlist_creation")
     public String wishItemCreationForm(Model model) {
+        model.addAttribute("wishListObject", new Wishlist());
         return "wishlist_creation";
+    }
+
+    @PostMapping("/wishlist_creation")
+    public String wishItemCreation(@ModelAttribute("wishListObject") Wishlist wishlist) {
+        wishlistService.createWishlist(wishlist);
+        return "redirect:/wish_list_frontpage";
     }
 
 

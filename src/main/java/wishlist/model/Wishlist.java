@@ -19,8 +19,13 @@ public class Wishlist {
         this.wishlistPrivate = wishlistPrivate;
     }
 
+    public Wishlist(String wishlistName) {
+        this.wishlistName = wishlistName;
+    }
 
+    public Wishlist(){
 
+    }
 
     public String getWishlistName() {
         return wishlistName;

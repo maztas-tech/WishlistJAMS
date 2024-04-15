@@ -8,6 +8,14 @@
     <body>
         <fieldset>
             <legend>Create wish list</legend>
+
+            <form action="/wish_list_frontpage/wishlist_creation" th:object="${wishListObject}" method="post">
+                <p>
+                    <label for="wishListName">Name of wish list</label>
+                    <input id="wishListName" name="wishListName" th:field="*{wishlistName}" placeholder="Wish list name">
+                </p>
+                <button type="submit">Create wish list</button>
+            </form>
         </fieldset>
 
     <a th:href="@{'/wish_list_frontpage'}">
