@@ -21,6 +21,8 @@ public class WishlistService {
         return wishlistRepository.showWishes(wishName);
     }
 
-
+    public void createWishlist(Wishlist wishlist){
+        wishlistRepository.createWishList(wishlist);
+    }
 
 }
