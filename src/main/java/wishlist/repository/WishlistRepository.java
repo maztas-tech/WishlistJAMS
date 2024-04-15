@@ -65,5 +65,25 @@ public class WishlistRepository {
         return items;
     }
 
+    public void createWishList(Wishlist wishlist) {
+        List<Wishlist> wishlistList = new ArrayList<>();
+        Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
+        String sql = "INSER INTO wishlist (wishlistName, isWishListPrivate) VALUES(?,?)";
+        try (PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setString(1, wishlist.getWishlistName());
+            ps.setInt(1, wishlist.isWishlistPrivate());
+            ResultSet rs = ps.executeQuery();
 
+            while (rs.next()){
+                wishlist = new Wishlist(
+                        rs.getString(1),
+                        rs.getInt(2)
+                );
+            }
+            wishlistList.add(wishlist);
+
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
 }
