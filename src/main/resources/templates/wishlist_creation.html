@@ -1,11 +1,18 @@
 <!DOCTYPE html>
 <html xmlns:th="http://www.thymeleaf.org" lang="en">
-<head>
-    <meta charset="UTF-8">
-    <title>Title</title>
-    <link th:href="@{/wishList.css}" rel="stylesheet">
-</head>
-<body>
+    <head>
+        <meta charset="UTF-8">
+        <title>Create wish list</title>
+        <link th:href="@{/wishList.css}" rel="stylesheet">
+    </head>
+    <body>
+        <fieldset>
+            <legend>Create wish list</legend>
+        </fieldset>
 
-</body>
+    <a th:href="@{'/wish_list_frontpage'}">
+        <input type="button" value="Back">
+    </a>
+
+    </body>
 </html>

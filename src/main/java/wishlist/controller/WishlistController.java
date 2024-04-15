@@ -28,6 +28,12 @@ public class WishlistController {
     }
 
 
+    @GetMapping("/wishlist_creation")
+    public String wishItemCreationForm(Model model) {
+        return "wishlist_creation";
+    }
+
+
 
 
 
