@@ -1,6 +1,7 @@
 package wishlist.model;
 
 public class Wish {
+    private int wishID;
     private String wishName;
     private String wishDescription;
     private double wishPrice;
@@ -10,7 +11,21 @@ public class Wish {
         this.wishDescription = wishDescription;
         this.wishPrice = wishPrice;
     }
+    public Wish(int wishID, String wishName, String wishDescription, double wishPrice) {
+        this.wishID = wishID;
+        this.wishName = wishName;
+        this.wishDescription = wishDescription;
+        this.wishPrice = wishPrice;
+    }
 
+
+    public int getWishID(){
+        return wishID;
+    }
+
+    public void setWishID(int wishID){
+        this.wishID = wishID;
+    }
     public String getWishName() {
         return wishName;
     }

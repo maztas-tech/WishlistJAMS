@@ -1,9 +1,9 @@
 package wishlist.model;
 
-import java.util.ArrayList;
 import java.util.List;
 
 public class Wishlist {
+    private int wishlistID;
     private String wishlistName;
     private int wishlistPrivate;
     private List<Wish> wishArrayList;
@@ -14,13 +14,19 @@ public class Wishlist {
         this.wishArrayList = wishArrayList;
     }
 
-    public Wishlist(String wishlistName, int wishlistPrivate) {
+    public Wishlist(int wishlistNo, String wishlistName, int wishlistPrivate) {
+        this.wishlistID = wishlistNo;
         this.wishlistName = wishlistName;
         this.wishlistPrivate = wishlistPrivate;
     }
 
 
-
+    public int getWishlistID() {
+        return wishlistID;
+    }
+    public void setWishlistID(int wishlistID){
+        this.wishlistID = wishlistID;
+    }
 
     public String getWishlistName() {
         return wishlistName;

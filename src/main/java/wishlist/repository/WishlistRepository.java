@@ -19,6 +19,7 @@ public class WishlistRepository {
     private String db_user;
     @Value("${spring.datasource.password}")
     private String db_pwd;
+
     private Wish wish;
     private Wishlist wishlist;
 
@@ -26,14 +27,15 @@ public class WishlistRepository {
     public List<Wishlist> showAllWishlists() {
         List<Wishlist> wishlists = new ArrayList<>();
         Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
-        String sql = "SELECT wishListName, isWishListPrivate FROM wishlist";
+        String sql = "SELECT wishListID,wishListName, isWishListPrivate FROM wishlist";
         try (Statement stmt = connection.createStatement();) {
             ResultSet rs = stmt.executeQuery(sql);
 
             while (rs.next()) {
                 wishlist = new Wishlist(
-                        rs.getString(1),
-                        rs.getInt(2)
+                         rs.getInt(1),
+                        rs.getString(2),
+                        rs.getInt(3)
                 );
                 wishlists.add(wishlist);
             }
@@ -43,19 +45,21 @@ public class WishlistRepository {
         return wishlists;
     }
 
-    public List<Wish> showWishes(String name) {
+
+    public List<Wish> showWishes(int wishlistID) {
         List<Wish> items = new ArrayList<>();
         Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
-        String sql = "SELECT wish.wishName, wish.wishDescription, wish.wishPrice FROM wishlist JOIN wish ON wishlist.wishListID = wish.wishListID WHERE wishlist.wishListName = ?";
+        String sql = "SELECT wish.wishID,wish.wishName, wish.wishDescription, wish.wishPrice FROM wishlist JOIN wish ON wishlist.wishListID = wish.wishListID WHERE wishlist.wishListID = ?";
         try(PreparedStatement ps = connection.prepareStatement(sql)) {
-            ps.setString(1, name);
+            ps.setInt(1, wishlistID);
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
                 wish = new Wish(
-                        rs.getString(1),
+                        rs.getInt(1),
                         rs.getString(2),
-                        rs.getInt(3)
+                        rs.getString(3),
+                        rs.getInt(4)
                 );
                 items.add(wish);
             }
