@@ -89,5 +89,24 @@ public class WishlistRepository {
         }
     }
 
+    public Wishlist createWishList(Wishlist wishlist) {
+        Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
+        String sql = "INSERT INTO wishlist (wishlistName) VALUES(?)";
+        try (PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setString(1, wishlist.getWishlistName());
+            ps.executeUpdate();
+            /*
+            while (rs.next()){
+                wishlist = new Wishlist(
+                        rs.getString(1)
+                );
+            }
 
+             */
+            return wishlist;
+
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
 }
