@@ -21,9 +21,9 @@ public class WishlistController {
         return "wish_list_frontpage";
     }
 
-    @GetMapping("/{wishName}/wishes")
-    public String wishItem(@PathVariable String wishName, Model model) {
-        model.addAttribute("wishVariable", wishlistService.showWishes(wishName));
+    @GetMapping("/{wishlistID}/wishes")
+    public String wishItem(@PathVariable int wishlistID, Model model) {
+        model.addAttribute("wishVariable", wishlistService.showWishes(wishlistID));
         return "wishes";
     }
 
