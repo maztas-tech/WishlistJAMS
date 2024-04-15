@@ -33,7 +33,7 @@ public class WishlistRepository {
 
             while (rs.next()) {
                 wishlist = new Wishlist(
-                         rs.getInt(1),
+                        rs.getInt(1),
                         rs.getString(2),
                         rs.getInt(3)
                 );
@@ -50,7 +50,7 @@ public class WishlistRepository {
         List<Wish> items = new ArrayList<>();
         Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
         String sql = "SELECT wish.wishID,wish.wishName, wish.wishDescription, wish.wishPrice FROM wishlist JOIN wish ON wishlist.wishListID = wish.wishListID WHERE wishlist.wishListID = ?";
-        try(PreparedStatement ps = connection.prepareStatement(sql)) {
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setInt(1, wishlistID);
             ResultSet rs = ps.executeQuery();
 
@@ -63,10 +63,30 @@ public class WishlistRepository {
                 );
                 items.add(wish);
             }
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
         return items;
+    }
+
+    public void deleteWishlist(int wishlistID) {
+        Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
+        String sqlChild = "DELETE FROM wish WHERE wishListID = ?";
+        String sqlParent = "DELETE FROM wishList WHERE wishListId = ?";
+        try {
+
+            PreparedStatement ps = connection.prepareStatement(sqlChild);
+           ps.setInt(1,wishlistID);
+           ps.executeUpdate();
+
+
+           ps = connection.prepareStatement(sqlParent);
+           ps.setInt(1,wishlistID);
+           ps.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
     }
 
     public Wishlist createWishList(Wishlist wishlist) {
