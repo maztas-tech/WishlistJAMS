@@ -17,8 +17,8 @@ public class WishlistService {
     public List<Wishlist> showAllWIshlists(){
         return wishlistRepository.showAllWishlists();
     }
-    public List<Wish> showWishes(String wishName){
-        return wishlistRepository.showWishes(wishName);
+    public List<Wish> showWishes(int wishlistID){
+        return wishlistRepository.showWishes(wishlistID);
     }
 
     public void createWishlist(Wishlist wishlist){
