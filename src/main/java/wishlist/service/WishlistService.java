@@ -21,6 +21,13 @@ public class WishlistService {
         return wishlistRepository.showWishes(wishlistID);
     }
 
+    public List<Wishlist> searchToEdit(int wishlistID) {
+        return wishlistRepository.searchToEdit(wishlistID);
+    }
+
+    public void editWishlist(Wishlist wishlist) {
+        wishlistRepository.editWishlist(wishlist);
+    }
 
 
 }

@@ -27,6 +27,11 @@ public class WishlistController {
         return "wishes";
     }
 
+@GetMapping
+    public String searchToEditWishlist(@PathVariable int ){
+
+}
+
 
 
 
