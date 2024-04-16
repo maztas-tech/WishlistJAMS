@@ -78,8 +78,7 @@ public class WishlistRepository {
             PreparedStatement ps = connection.prepareStatement(sqlChild);
             ps.setInt(1, wishlistID);
             ps.executeUpdate();
-
-
+          
             ps = connection.prepareStatement(sqlParent);
             ps.setInt(1, wishlistID);
             ps.executeUpdate();
@@ -89,7 +88,7 @@ public class WishlistRepository {
         }
     }
 
-    public Wishlist searchToEdit(int wishlistID) {
+   public Wishlist searchToEdit(int wishlistID) {
         Wishlist wishlist1 = null;
         Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
         String sql = "SELECT wishListID, wishListName, isWishListPrivate FROM wishlist WHERE wishlist.wishListID = ?";
@@ -126,7 +125,10 @@ public class WishlistRepository {
             preparedStatement.setInt(2, wishlist2.isWishlistPrivate());
             preparedStatement.setInt(3, wishlist2.getWishlistID());
             preparedStatement.executeUpdate();
-
+          
+            ps = connection.prepareStatement(sqlParent);
+            ps.setInt(1, wishlistID);
+            ps.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -152,6 +154,36 @@ public class WishlistRepository {
             return wishlist;
 
         } catch (SQLException e) {
+                throw new RuntimeException(e);
+        }
+    }
+  
+    public void deleteWish(int wish) {
+        Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
+        String sql = "DELETE FROM wish WHERE wishID = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, wish);
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException();
+        }
+    }
+
+    public int getListID(int wishID) {
+        int id=0;
+        Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
+        String sql =" SELECT wishListID FROM wish WHERE wishID = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1,wishID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                id=rs.getInt(1);
+            }
+            return id;
+
+        }catch (SQLException e){
             throw new RuntimeException(e);
         }
     }
