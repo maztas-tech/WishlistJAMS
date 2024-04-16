@@ -52,8 +52,9 @@ public class WishlistController {
 
     @GetMapping("/{wishID}/remove")
     public String deleteWish(@PathVariable("wishID") int wishID){
+        int id = wishlistService.getListID(wishID);
         wishlistService.deleteWish(wishID);
-        return "redirect:/wish_list_frontpage";
+        return "redirect:/wish_list_frontpage/"+ id + "/wishes";
     }
 
 

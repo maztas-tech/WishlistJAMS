@@ -121,4 +121,22 @@ public class WishlistRepository {
             throw new RuntimeException();
         }
     }
+
+    public int getListID(int wishID) {
+        int id=0;
+        Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
+        String sql =" SELECT wishListID FROM wish WHERE wishID = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1,wishID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                id=rs.getInt(1);
+            }
+            return id;
+
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
 }
