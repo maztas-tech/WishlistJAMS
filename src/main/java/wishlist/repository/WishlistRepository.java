@@ -76,13 +76,13 @@ public class WishlistRepository {
         try {
 
             PreparedStatement ps = connection.prepareStatement(sqlChild);
-           ps.setInt(1,wishlistID);
-           ps.executeUpdate();
+            ps.setInt(1, wishlistID);
+            ps.executeUpdate();
 
 
-           ps = connection.prepareStatement(sqlParent);
-           ps.setInt(1,wishlistID);
-           ps.executeUpdate();
+            ps = connection.prepareStatement(sqlParent);
+            ps.setInt(1, wishlistID);
+            ps.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
@@ -92,7 +92,7 @@ public class WishlistRepository {
     public Wishlist createWishList(Wishlist wishlist) {
         Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
         String sql = "INSERT INTO wishlist (wishlistName) VALUES(?)";
-        try (PreparedStatement ps = connection.prepareStatement(sql)){
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, wishlist.getWishlistName());
             ps.executeUpdate();
             /*
@@ -105,8 +105,20 @@ public class WishlistRepository {
              */
             return wishlist;
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
+        }
+    }
+
+    public void deleteWish(int wish) {
+        Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
+        String sql = "DELETE FROM wish WHERE wishID = ?";
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
+            ps.setInt(1, wish);
+            ps.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException();
         }
     }
 }
