@@ -21,6 +21,9 @@ public class WishlistService {
         return wishlistRepository.showWishes(wishlistID);
     }
 
+    public void delete(int wishlistID){
+        wishlistRepository.deleteWishlist(wishlistID);
+    }
     public List<Wishlist> searchToEdit(int wishlistID) {
         return wishlistRepository.searchToEdit(wishlistID);
     }
@@ -29,5 +32,9 @@ public class WishlistService {
         wishlistRepository.editWishlist(wishlist);
     }
 
+
+    public void createWishlist(Wishlist wishlist){
+        wishlistRepository.createWishList(wishlist);
+    }
 
 }

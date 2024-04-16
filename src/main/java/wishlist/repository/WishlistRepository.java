@@ -69,6 +69,25 @@ public class WishlistRepository {
         return items;
     }
 
+    public void deleteWishlist(int wishlistID) {
+        Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
+        String sqlChild = "DELETE FROM wish WHERE wishListID = ?";
+        String sqlParent = "DELETE FROM wishList WHERE wishListId = ?";
+        try {
+
+            PreparedStatement ps = connection.prepareStatement(sqlChild);
+           ps.setInt(1,wishlistID);
+           ps.executeUpdate();
+
+
+           ps = connection.prepareStatement(sqlParent);
+           ps.setInt(1,wishlistID);
+           ps.executeUpdate();
+
+        } catch (SQLException e) {
+            throw new RuntimeException(e);
+        }
+    }
 
     public List<Wishlist> searchToEdit(int wishlistID) {
         List<Wishlist> searchedWishlist = new ArrayList<>();
@@ -108,4 +127,24 @@ public class WishlistRepository {
 
     }
 
+    public Wishlist createWishList(Wishlist wishlist) {
+        Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
+        String sql = "INSERT INTO wishlist (wishlistName) VALUES(?)";
+        try (PreparedStatement ps = connection.prepareStatement(sql)){
+            ps.setString(1, wishlist.getWishlistName());
+            ps.executeUpdate();
+            /*
+            while (rs.next()){
+                wishlist = new Wishlist(
+                        rs.getString(1)
+                );
+            }
+
+             */
+            return wishlist;
+
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
 }

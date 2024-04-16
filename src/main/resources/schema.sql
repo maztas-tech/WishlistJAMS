@@ -2,10 +2,10 @@ CREATE SCHEMA if not exists wishlist_db;
 use wishlist_db;
 
 
-CREATE TABLE wishList(
+CREATE TABLE if not exists wishList(
     wishListID INT auto_increment,
     wishListName VARCHAR(50) NOT NULL,
-    isWishListPrivate BOOLEAN,
+    isWishListPrivate BOOLEAN NOT NULL,
     primary key(wishListID)
 );
 

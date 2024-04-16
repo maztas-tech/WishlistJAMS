@@ -20,6 +20,10 @@ public class Wishlist {
         this.wishlistPrivate = wishlistPrivate;
     }
 
+    public Wishlist() {
+
+    }
+
 
     public int getWishlistID() {
         return wishlistID;
