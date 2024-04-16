@@ -58,6 +58,7 @@ public class WishlistController {
         Wishlist wishlist = wishlistService.searchToEdit(wishlistID);
         model.addAttribute("wishlist", wishlist);
         return "edit_wishlist_form";
+
     }
 
     @PostMapping("/edit")
