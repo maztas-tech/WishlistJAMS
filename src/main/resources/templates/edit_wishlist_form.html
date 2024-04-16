@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org" lang="eng">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <link th:href="@{/edit.css}" rel="stylesheet">
+</head>
+<body>
+<fieldset>
+    <form action="/wish_list_frontpage/edit" method="post">
+        <label th:for="name">Name</label><br>
+        <input type="text" id="name" name="name" th:value="${wishlist.model.Wishlist.wishlistName}"><br>
+
+        <legend>Should it be private?</legend>
+        <input type="radio" name="private" id="private_1" th:value="0">
+        <label th:for="private_1">No</label><br>
+
+        <input type="radio" name="private" id="private_2" th:value="1">
+        <label th:for="private_2">Yes</label><br>
+    </form>
+</fieldset>
+</body>
+</html>
