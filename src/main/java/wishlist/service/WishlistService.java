@@ -24,7 +24,7 @@ public class WishlistService {
     public void delete(int wishlistID){
         wishlistRepository.deleteWishlist(wishlistID);
     }
-    public List<Wishlist> searchToEdit(int wishlistID) {
+    public Wishlist searchToEdit(int wishlistID) {
         return wishlistRepository.searchToEdit(wishlistID);
     }
 

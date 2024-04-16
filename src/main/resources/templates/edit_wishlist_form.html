@@ -3,20 +3,35 @@
 <head>
     <meta charset="UTF-8">
     <title>Title</title>
-    <link th:href="@{/edit.css}" rel="stylesheet">
+    <link th:href="@{/wishList.css}" rel="stylesheet">
 </head>
 <body>
 <fieldset>
-    <form action="/wish_list_frontpage/edit" method="post">
-        <label th:for="name">Name</label><br>
-        <input type="text" id="name" name="name" th:value="${wishlist.model.Wishlist.wishlistName}"><br>
+    <form action="/wish_list_frontpage/edit" method="post" th:object="${wishlist}">
+        
+        <p th:text="${wishlist.wishlistName}">Name: </p>
+        <input type="hidden" name="wishlistID" th:value="*{wishlistID}">
 
-        <legend>Should it be private?</legend>
-        <input type="radio" name="private" id="private_1" th:value="0">
-        <label th:for="private_1">No</label><br>
+        <div>
+            <label th:for="name">Name</label><br>
+            <input type="text" id="name" name="wishlistName" th:value="*{wishlistName}"><br>
+        </div>
 
-        <input type="radio" name="private" id="private_2" th:value="1">
-        <label th:for="private_2">Yes</label><br>
+        <div>
+            <legend>Should it be private?</legend>
+            <input type="radio" name="wishlistPrivate" id="private_1" th:value="0">
+            <label th:for="private_1">No</label><br>
+        </div>
+
+        <div>
+            <input type="radio" name="wishlistPrivate" id="private_2" th:value="1">
+            <label th:for="private_2">Yes</label><br>
+        </div>
+
+        <input type="submit" value="Submit" class="button">
+
+        <a th:href="@{/wish_list_frontpage}" class="button">Cancel</a>
+
     </form>
 </fieldset>
 </body>

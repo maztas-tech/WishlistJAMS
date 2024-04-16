@@ -76,21 +76,21 @@ public class WishlistRepository {
         try {
 
             PreparedStatement ps = connection.prepareStatement(sqlChild);
-           ps.setInt(1,wishlistID);
-           ps.executeUpdate();
+            ps.setInt(1, wishlistID);
+            ps.executeUpdate();
 
 
-           ps = connection.prepareStatement(sqlParent);
-           ps.setInt(1,wishlistID);
-           ps.executeUpdate();
+            ps = connection.prepareStatement(sqlParent);
+            ps.setInt(1, wishlistID);
+            ps.executeUpdate();
 
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }
 
-    public List<Wishlist> searchToEdit(int wishlistID) {
-        List<Wishlist> searchedWishlist = new ArrayList<>();
+    public Wishlist searchToEdit(int wishlistID) {
+        Wishlist wishlist1 = null;
         Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
         String sql = "SELECT wishListID, wishListName, isWishListPrivate FROM wishlist WHERE wishlist.wishListID = ?";
         try (PreparedStatement ps = connection.prepareStatement(sql)) {
@@ -98,39 +98,47 @@ public class WishlistRepository {
             ResultSet rs = ps.executeQuery();
 
             while (rs.next()) {
-                Wishlist wishlist1 = new Wishlist(
+                wishlist1 = new Wishlist(
                         rs.getInt(1),
                         rs.getString(2),
                         rs.getInt(3)
                 );
-                searchedWishlist.add(wishlist1);
+
             }
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
-        return searchedWishlist;
+        return wishlist1;
     }
 
     public void editWishlist(Wishlist wishlist2) {
-        String sql = "UPDATE wishlist JOIN wish ON wishlist.wishListID = wish.wishListID SET wishlist.wishListName = ? wishlist.isWishListPrivate = ? WHERE wishlist.wishListID = ?;";
-        try (Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
-             PreparedStatement preparedStatement = connection.prepareStatement(sql)) {
+        String h2SQL = """
+                UPDATE wishList SET wishListName = ?, 
+                isWishListPrivate = ? 
+                WHERE wishListID = ? AND EXISTS (SELECT 1 FROM wish 
+                WHERE wish.wishListID = wishList.wishListID AND wish.wishListID = wishList.wishListID);
+                                
+                """;
+        Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
+        try (PreparedStatement preparedStatement = connection.prepareStatement(h2SQL)){
 
             preparedStatement.setString(1, wishlist2.getWishlistName());
             preparedStatement.setInt(2, wishlist2.isWishlistPrivate());
             preparedStatement.setInt(3, wishlist2.getWishlistID());
-            preparedStatement.executeQuery();
+            preparedStatement.executeUpdate();
+
 
         } catch (SQLException e) {
-            throw new RuntimeException();
+            throw new RuntimeException(e);
         }
+
 
     }
 
     public Wishlist createWishList(Wishlist wishlist) {
         Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
         String sql = "INSERT INTO wishlist (wishlistName) VALUES(?)";
-        try (PreparedStatement ps = connection.prepareStatement(sql)){
+        try (PreparedStatement ps = connection.prepareStatement(sql)) {
             ps.setString(1, wishlist.getWishlistName());
             ps.executeUpdate();
             /*
@@ -143,7 +151,7 @@ public class WishlistRepository {
              */
             return wishlist;
 
-        }catch (SQLException e){
+        } catch (SQLException e) {
             throw new RuntimeException(e);
         }
     }

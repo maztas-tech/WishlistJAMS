@@ -7,6 +7,8 @@ import org.springframework.web.bind.annotation.*;
 import wishlist.model.Wishlist;
 import wishlist.service.WishlistService;
 
+import java.util.List;
+
 @Controller
 @RequestMapping("wish_list_frontpage")
 public class WishlistController {
@@ -33,11 +35,6 @@ public class WishlistController {
         return "wishes";
     }
 
-    @GetMapping("/{wishlistID}/edit")
-    public String searchToEditWishlist(@PathVariable int wishlistID, Model model) {
-        model.addAttribute("wishlist", wishlistService.searchToEdit(wishlistID));
-        return "edit_wishlist_page";
-    }
     @GetMapping("/{wishlistID}/delete")
     public String deleteWishlist(@PathVariable("wishlistID") int wishlistID){
         wishlistService.delete(wishlistID);
@@ -56,7 +53,12 @@ public class WishlistController {
         return "redirect:/wish_list_frontpage";
     }
 
-
+    @GetMapping("/{wishlistID}/edit")
+    public String searchToEditWishlist(@PathVariable int wishlistID, Model model) {
+        Wishlist wishlist = wishlistService.searchToEdit(wishlistID);
+        model.addAttribute("wishlist", wishlist);
+        return "edit_wishlist_form";
+    }
 
     @PostMapping("/edit")
     public String editWishlist(@ModelAttribute Wishlist wishlist) {

@@ -36,12 +36,13 @@ public class Wishlist {
         return wishlistName;
     }
 
-    public void setWishlistName(String wishlistName) {
-        this.wishlistName = wishlistName;
-    }
 
     public int isWishlistPrivate() {
         return wishlistPrivate;
+    }
+
+    public void setWishlistName(String wishlistName) {
+        this.wishlistName = wishlistName;
     }
 
     public void setWishlistPrivate(int wishlistPrivate) {
