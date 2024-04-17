@@ -17,7 +17,6 @@ public class WishlistController {
 
 
     private WishlistService wishlistService;
-
     public WishlistController(WishlistService wishlistService) {
         this.wishlistService = wishlistService;
         this.wishlist = new Wishlist();
@@ -66,5 +65,17 @@ public class WishlistController {
         wishlistService.editWishlist(wishlist);
         return "redirect:/wish_list_frontpage";
     }
+
+    @GetMapping("/{wishID}/remove")
+    public String deleteWish(@PathVariable("wishID") int wishID){
+        int id = wishlistService.getListID(wishID);
+        wishlistService.deleteWish(wishID);
+        return "redirect:/wish_list_frontpage/"+ id + "/wishes";
+    }
+
+
+
+
+
 
 }

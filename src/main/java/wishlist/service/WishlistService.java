@@ -37,4 +37,12 @@ public class WishlistService {
         wishlistRepository.createWishList(wishlist);
     }
 
+    public void deleteWish(int wishID){
+         wishlistRepository.deleteWish(wishID);
+    }
+
+    public int getListID(int wishID){
+        return wishlistRepository.getListID(wishID);
+    }
+
 }
