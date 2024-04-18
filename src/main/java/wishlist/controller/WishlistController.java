@@ -71,10 +71,23 @@ public class WishlistController {
     }
 
     @GetMapping("/{wishID}/remove")
-    public String deleteWish(@PathVariable("wishID") int wishID){
+    public String deleteWish(@PathVariable int wishID){
         int id = wishlistService.getListID(wishID);
         wishlistService.deleteWish(wishID);
         return "redirect:/wish_list_frontpage/"+ id + "/wishes";
+    }
+
+    @GetMapping("/{wishlistID}/edit_wish")
+    public String editWishForm(@PathVariable int wishlistID, Wish wish, Model model){
+        model.addAttribute("wishlistID",wishlistID);
+        model.addAttribute("wish",wish);
+        return "edit_wish";
+    }
+
+    @PostMapping("/edit_wish")
+    public String editWish(@ModelAttribute Wish wish){
+        wishlistService.editWish(wish);
+        return "redirect:/wish_list_frontpage/"+ wish.getWishID() + "/wishes";
     }
 
     // Create wish

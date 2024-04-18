@@ -49,4 +49,8 @@ public class WishlistService {
         wishlistRepository.createWish(wish);
     }
 
+    public void editWish(Wish wish){
+        wishlistRepository.editWish(wish);
+    }
+
 }
