@@ -77,9 +77,10 @@ public class WishlistController {
         return "redirect:/wish_list_frontpage/"+ id + "/wishes";
     }
 
-    @GetMapping("/{wishlistID}/edit_wish")
-    public String editWishForm(@PathVariable int wishlistID, Wish wish, Model model){
-        model.addAttribute("wishlistID",wishlistID);
+    @GetMapping("/{wishID}/edit_wish")
+    public String editWishForm(@PathVariable int wishID, Model model){
+        Wish wish = wishlistService.getWish(wishID);
+        model.addAttribute("wishID",wishID);
         model.addAttribute("wish",wish);
         return "edit_wish";
     }
@@ -87,7 +88,7 @@ public class WishlistController {
     @PostMapping("/edit_wish")
     public String editWish(@ModelAttribute Wish wish){
         wishlistService.editWish(wish);
-        return "redirect:/wish_list_frontpage/"+ wish.getWishID() + "/wishes";
+        return "redirect:/wish_list_frontpage/"+ wish.getWishlistID() + "/wishes";
     }
 
     // Create wish

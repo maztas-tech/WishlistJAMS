@@ -194,6 +194,7 @@ public class WishlistRepository {
             ps.setString(2, wish.getWishDescription());
             ps.setDouble(3, wish.getWishPrice());
             ps.setInt(4, wish.getWishID());
+            ps.executeUpdate();
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
@@ -213,5 +214,29 @@ public class WishlistRepository {
         } catch (SQLException e) {
             throw new RuntimeException(e);
         }
+    }
+
+    public Wish getWish(int wishID){
+        Wish wish = null;
+        Connection connection = ConnectionManager.getConnection(db_url,db_user,db_pwd);
+        String sql = "SELECT wishID,wishName,wishDescription,wishPrice,wishlistID FROM wish WHERE wishID = ?";
+        try {
+            PreparedStatement ps = connection.prepareStatement(sql);
+            ps.setInt(1,wishID);
+            ResultSet rs = ps.executeQuery();
+            while (rs.next()){
+                wish = new Wish(
+                        rs.getInt(1),
+                        rs.getString(2),
+                        rs.getString(3),
+                        rs.getDouble(4),
+                        rs.getInt(5)
+                );
+            }
+            ps.executeQuery();
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+        return wish;
     }
 }

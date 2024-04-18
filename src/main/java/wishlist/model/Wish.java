@@ -19,7 +19,8 @@ public class Wish {
         this.wishPrice = wishPrice;
     }
 
-    public Wish(String wishName, String wishDescription, double wishPrice, int wishlistID) {
+    public Wish(int wishID,String wishName, String wishDescription, double wishPrice, int wishlistID) {
+        this.wishID = wishID;
         this.wishName = wishName;
         this.wishDescription = wishDescription;
         this.wishPrice = wishPrice;
