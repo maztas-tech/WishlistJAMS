@@ -3,37 +3,38 @@
     <head>
         <meta charset="UTF-8">
         <title>Wishes</title>
-        <link th:href="@{/wishList.css}" rel="stylesheet">
+        <link th:href="@{/wishes.css}" rel="stylesheet">
     </head>
     <body>
-        <table class="mainTable">
-            <thead>
-                <tr>
-                    <th colspan="6">Wishes</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr th:each="wish : ${wishVariable}">
-                    <td class="table-header" th:text="${wish.wishName}">
-                    <td class="table-header" th:text="${wish.wishDescription}">
-                    <td class="table-header" th:text="${wish.wishPrice}">
-                    <td>
-                        <a th:href="@{'/wish_list_frontpage/' + ${wish.wishID} + '/edit'}">
-                            <input type="button" value="Edit" class="button">
-                        </a>
-                    </td>
-                    <td>
-                    <a th:href="@{'/wish_list_frontpage/' + ${wish.wishID} + '/remove'}">
-                        <input type="button" value="delete" class="button">
-                    </a>
-                </td>
-                </tr>
-            </tbody>
-        </table>
-        <a class="new_wish" th:href="${'/wish_list_frontpage/' + wishlistId + '/wish_creation'}">
-            <input type="button" value="New wish" class="button">
-        </a>
-    </body>
-        <a type="button" th:href="@{/wish_list_frontpage}" class="button">Cancel</a>
+    <div class="content">
+    <table class="mainTable">
+        <thead>
+        <tr>
+            <th colspan="6">Wishes</th>
+        </tr>
+        </thead>
+        <tbody>
+        <tr th:each="wish : ${wishVariable}">
+            <td class="table-header" th:text="${wish.wishName}"></td>
+            <td class="table-header" th:text="${wish.wishDescription}"></td>
+            <td class="table-header" th:text="${wish.wishPrice}"></td>
+            <td>
+                <a th:href="@{'/wish_list_frontpage/' + ${wish.wishID} + '/edit'}">
+                    <input type="button" value="Edit" class="button">
+                </a>
+            </td>
+            <td>
+                <a th:href="@{'/wish_list_frontpage/' + ${wish.wishID} + '/remove'}">
+                    <input type="button" value="delete" class="button">
+                </a>
+            </td>
+        </tr>
+        </tbody>
+    </table>
+    </div>
+    <a class="new_wish" th:href="${'/wish_list_frontpage/' + wishlistId + '/wish_creation'}">
+        <input type="button" value="New wish" class="button">
+    </a>
+    <a type="button" th:href="@{/wish_list_frontpage}" class="button">Cancel</a>
     </body>
 </html>
