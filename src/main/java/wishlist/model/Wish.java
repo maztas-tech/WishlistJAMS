@@ -5,6 +5,7 @@ public class Wish {
     private String wishName;
     private String wishDescription;
     private double wishPrice;
+    private int wishlistID;
 
     public Wish(String wishName, String wishDescription, double wishPrice) {
         this.wishName = wishName;
@@ -16,6 +17,25 @@ public class Wish {
         this.wishName = wishName;
         this.wishDescription = wishDescription;
         this.wishPrice = wishPrice;
+    }
+
+    public Wish(String wishName, String wishDescription, double wishPrice, int wishlistID) {
+        this.wishName = wishName;
+        this.wishDescription = wishDescription;
+        this.wishPrice = wishPrice;
+        this.wishlistID = wishlistID;
+    }
+
+    public Wish(){
+
+    }
+
+    public int getWishlistID() {
+        return wishlistID;
+    }
+
+    public void setWishlistID(int wishlistID) {
+        this.wishlistID = wishlistID;
     }
 
 
