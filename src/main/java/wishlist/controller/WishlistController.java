@@ -17,8 +17,8 @@ public class WishlistController {
     private Wish wish;
 
 
-
     private WishlistService wishlistService;
+
     public WishlistController(WishlistService wishlistService) {
         this.wishlistService = wishlistService;
         this.wishlist = new Wishlist();
@@ -39,10 +39,11 @@ public class WishlistController {
     }
 
     @GetMapping("/{wishlistID}/delete")
-    public String deleteWishlist(@PathVariable("wishlistID") int wishlistID){
+    public String deleteWishlist(@PathVariable("wishlistID") int wishlistID) {
         wishlistService.delete(wishlistID);
         return "redirect:/wish_list_frontpage";
     }
+
     // Create wish list
     @GetMapping("/wishlist_creation")
     public String wishItemCreationForm(Model model) {
@@ -71,15 +72,15 @@ public class WishlistController {
     }
 
     @GetMapping("/{wishID}/remove")
-    public String deleteWish(@PathVariable("wishID") int wishID){
+    public String deleteWish(@PathVariable("wishID") int wishID) {
         int id = wishlistService.getListID(wishID);
         wishlistService.deleteWish(wishID);
-        return "redirect:/wish_list_frontpage/"+ id + "/wishes";
+        return "redirect:/wish_list_frontpage/" + id + "/wishes";
     }
 
     // Create wish
     @GetMapping("/{wishlistId}/wish_creation")
-    public String wishCreationForm(@PathVariable int wishlistId, Model model){
+    public String wishCreationForm(@PathVariable int wishlistId, Model model) {
         //wishlistService.getListID(wishID);
         model.addAttribute("wishlistId", wishlistId);
         model.addAttribute("wishObject", new Wish());
@@ -87,12 +88,10 @@ public class WishlistController {
     }
 
     @PostMapping("/wish_creation")
-    public String wishCreation(@ModelAttribute("wishObject") Wish wish){
+    public String wishCreation(@ModelAttribute("wishObject") Wish wish) {
         wishlistService.createWish(wish);
-
-        return "redirect:/wish_list_frontpage/" + wish.getWishlistID() +"/wishes";
+        return "redirect:/wish_list_frontpage/" + wish.getWishlistID() + "/wishes";
     }
 
-
-
 }
+
