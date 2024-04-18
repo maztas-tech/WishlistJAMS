@@ -45,4 +45,8 @@ public class WishlistService {
         return wishlistRepository.getListID(wishID);
     }
 
+    public void createWish(Wish wish){
+        wishlistRepository.createWish(wish);
+    }
+
 }

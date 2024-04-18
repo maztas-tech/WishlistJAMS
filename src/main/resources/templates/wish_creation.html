@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org/" lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Create wish</title>
+    <link th:href="@{/wishList.css}" rel="stylesheet">
+</head>
+<h3>Create a wish!</h3>
+<body>
+<fieldset>
+    <legend>Create wish</legend>
+    <form action="/wish_list_frontpage/wish_creation" th:object="${wishObject}" method="post">
+
+        <input type="hidden" name="wishlistID" th:value="${wishlistId}">
+        <p>
+            <label for="wishName">Wish name</label>
+            <input id="wishName" th:field="*{wishName}" placeholder="Wish name">
+        </p>
+        <p>
+            <label for="wishDescription">Wish description</label>
+            <input id="wishDescription" th:field="*{wishDescription}" placeholder="Wish description">
+        </p>
+        <p>
+            <label for="wishPrice">Wish price</label>
+            <input id="wishPrice" th:field="*{wishPrice}" placeholder="Wish price">
+        </p>
+
+
+            <input id="wishlistID" type="hidden" th:field="*{wishlistID}">
+
+        <button type="submit">Create wish</button>
+    </form>
+</fieldset>
+</body>
+</html>

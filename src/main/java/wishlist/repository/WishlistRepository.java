@@ -185,4 +185,20 @@ public class WishlistRepository {
             throw new RuntimeException(e);
         }
     }
+
+
+    public void createWish(Wish wish) {
+        Connection connection = ConnectionManager.getConnection(db_url, db_user, db_pwd);
+        String SQL = "INSERT INTO wish (wishName, wishDescription, wishPrice, wishListID) VALUES (?, ?, ?, ?)";
+        try(PreparedStatement ps = connection.prepareStatement(SQL)) {
+            ps.setString(1, wish.getWishName());
+            ps.setString(2, wish.getWishDescription());
+            ps.setDouble(3, wish.getWishPrice());
+            ps.setInt(4, wish.getWishlistID());
+
+            ps.executeUpdate();
+        }catch (SQLException e){
+            throw new RuntimeException(e);
+        }
+    }
 }
