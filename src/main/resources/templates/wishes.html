@@ -6,7 +6,7 @@
         <link th:href="@{/wishList.css}" rel="stylesheet">
     </head>
     <body>
-        <table>
+        <table class="mainTable">
             <thead>
                 <tr>
                     <th colspan="6">Wishes</th>
@@ -30,5 +30,10 @@
                 </tr>
             </tbody>
         </table>
+        <a class="new_wish" th:href="${'/wish_list_frontpage/' + wishlistId + '/wish_creation'}">
+            <input type="button" value="New wish" class="button">
+        </a>
+    </body>
+        <a type="button" th:href="@{/wish_list_frontpage}" class="button">Cancel</a>
     </body>
 </html>

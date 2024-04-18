@@ -53,8 +53,10 @@ nav {
 }
 
 .mainTable {
-    align-content: center;
+    align-content: center /* Adjust the width of the table as needed */;
     margin: auto;
+    background: transparent;
+    border-color: red;
 }
 
 

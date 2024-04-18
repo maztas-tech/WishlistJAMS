@@ -4,6 +4,7 @@ import org.springframework.boot.Banner;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.*;
+import wishlist.model.Wish;
 import wishlist.model.Wishlist;
 import wishlist.service.WishlistService;
 
@@ -13,6 +14,7 @@ import java.util.List;
 @RequestMapping("wish_list_frontpage")
 public class WishlistController {
     private Wishlist wishlist; //data objekt
+    private Wish wish;
 
 
 
@@ -20,6 +22,7 @@ public class WishlistController {
     public WishlistController(WishlistService wishlistService) {
         this.wishlistService = wishlistService;
         this.wishlist = new Wishlist();
+        this.wish = new Wish();
     }
 
     @GetMapping("")
@@ -31,6 +34,7 @@ public class WishlistController {
     @GetMapping("/{wishlistID}/wishes")
     public String wishItem(@PathVariable int wishlistID, Model model) {
         model.addAttribute("wishVariable", wishlistService.showWishes(wishlistID));
+        model.addAttribute("wishlistId", wishlistID);
         return "wishes";
     }
 
@@ -73,8 +77,21 @@ public class WishlistController {
         return "redirect:/wish_list_frontpage/"+ id + "/wishes";
     }
 
+    // Create wish
+    @GetMapping("/{wishlistId}/wish_creation")
+    public String wishCreationForm(@PathVariable int wishlistId, Model model){
+        //wishlistService.getListID(wishID);
+        model.addAttribute("wishlistId", wishlistId);
+        model.addAttribute("wishObject", new Wish());
+        return "wish_creation";
+    }
 
+    @PostMapping("/wish_creation")
+    public String wishCreation(@ModelAttribute("wishObject") Wish wish){
+        wishlistService.createWish(wish);
 
+        return "redirect:/wish_list_frontpage/" + wish.getWishlistID() +"/wishes";
+    }
 
 
 
